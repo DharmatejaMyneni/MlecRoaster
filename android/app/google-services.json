@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "620726834065",
+    "firebase_url": "https://mlec-roster.firebaseio.com",
+    "project_id": "mlec-roster",
+    "storage_bucket": "mlec-roster.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620726834065:android:2cacfc2b11bb6d703a4030",
+        "android_client_info": {
+          "package_name": "com.example.mlec_roster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620726834065-0grloef22lcp825kml198rb4eu0blk0l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mlec_roster",
+            "certificate_hash": "af23d8863615f8adbcc4d525babe09870afb37c2"
+          }
+        },
+        {
+          "client_id": "620726834065-m7lob1fssf2uvnvpihjplou2kt0r623s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAY_7b9j91chpCZjWhSPPL1ots8JtG2OzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620726834065-m7lob1fssf2uvnvpihjplou2kt0r623s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

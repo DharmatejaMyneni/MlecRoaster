@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mlec_roster/starters/GetStarted.dart';
 import './starters/Login.dart';
 

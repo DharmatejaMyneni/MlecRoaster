@@ -26,11 +26,11 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
         width: (MediaQuery.of(context).size.width),
         decoration: new BoxDecoration(color: Colors.white),
         child: new ListView(
-          padding: EdgeInsets.only(top: 150.0),
+          padding: EdgeInsets.all(MediaQuery.of(context).size.height / 35),
           children: <Widget>[
             Center(
               child: Padding(
-                padding: const EdgeInsets.only(right: 250.0),
+                padding: const EdgeInsets.only(right: 240.0),
                 child: Image.asset('assets/love.png'),
               ),
             ),
@@ -46,6 +46,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
             ),
             new Container(
               decoration: new BoxDecoration(color: Colors.white),
+              height: MediaQuery.of(context).size.height / 10,
               child: TabBar(
                 indicator: UnderlineTabIndicator(
                     borderSide:
@@ -97,6 +98,7 @@ class _LoginPageState extends State<LoginPage> {
   List<User> users = <User>[const User('Student'), const User('Lecturer')];
 
   User selectedUser;
+  String dropdownError;
 
   String _myemail;
   String _mypassword;
@@ -112,6 +114,11 @@ class _LoginPageState extends State<LoginPage> {
 
   void _submit() {
     final form = formkey.currentState;
+
+    if (selectedUser == null) {
+      setState(() => dropdownError = "Please select an option!");
+      form.save();
+    }
 
     if (form.validate()) {
       form.save();
@@ -150,6 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                         onChanged: (User newValue) {
                           setState(() {
                             selectedUser = newValue;
+                             dropdownError = null;
                           });
                         },
                         items: users.map((User user) {
@@ -161,6 +169,14 @@ class _LoginPageState extends State<LoginPage> {
                         }).toList()),
                   ),
                 ),
+              ),
+              Center(
+                child: dropdownError == null
+                ? SizedBox.shrink()
+                : Text(
+            dropdownError ?? "",
+            style: TextStyle(color: Colors.red),
+          ),
               ),
               new Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -228,7 +244,7 @@ class _LoginPageState extends State<LoginPage> {
 
 class SignUpPage extends StatefulWidget {
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _SignUpPageState createState() => _SignUpPageState(); 
 }
 
 class _SignUpPageState extends State<SignUpPage> {
@@ -237,6 +253,7 @@ class _SignUpPageState extends State<SignUpPage> {
   List<User> users = <User>[const User('Student'), const User('Lecturer')];
 
   User selectedUser;
+  String dropdownError;
 
   String _myemail;
   String _mypassword;
@@ -252,6 +269,11 @@ class _SignUpPageState extends State<SignUpPage> {
 
   void _submit() {
     final form = formkey.currentState;
+
+     if (selectedUser == null) {
+      setState(() => dropdownError = "Please select an option!");
+      form.save();
+    }
 
     if (form.validate()) {
       form.save();
@@ -291,6 +313,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         onChanged: (User newValue) {
                           setState(() {
                             selectedUser = newValue;
+                            dropdownError = null;
                             
                           });
                         },
@@ -303,6 +326,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         }).toList()),
                   ),
                 ),
+              ),
+              Center(
+                child: dropdownError == null
+                ? SizedBox.shrink()
+                : Text(
+            dropdownError ?? "",
+            style: TextStyle(color: Colors.red),
+          ),
               ),
               new Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -330,10 +361,13 @@ class _SignUpPageState extends State<SignUpPage> {
                         decoration: new InputDecoration(
                             focusedBorder: new UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black)),
-                            labelText: "password",
+                            labelText: "password", 
                             labelStyle: TextStyle(color: Color(0xFF4DD0B1)),
                             prefixIcon:
                                 Icon(Icons.lock, color: Color(0xFF4DD0B1))),
+                             validator: (val) =>
+                            val.length < 6 ? 'Password is too short' : null,
+                        onSaved: (val) => _mypassword = val,    
                         obscureText: true,
                       ),
                       new Padding(
@@ -344,7 +378,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 45.0,
                         child: new RaisedButton(
                           child: new Text(
-                            "Login",
+                            "Sign Up",
                             style: new TextStyle(
                                 fontSize: 20.0, color: Colors.white),
                           ),
